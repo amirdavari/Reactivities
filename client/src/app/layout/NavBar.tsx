@@ -1,18 +1,16 @@
 import { Group } from "@mui/icons-material";
-import { AppBar, Box, Button, Container, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, MenuItem, Toolbar, Typography } from "@mui/material";
+import { NavLink } from "react-router";
+import MenuItemLink from "../shared/components/MenuItemLink";
 
-type Props = {
-    openForm: (id?: string) => void;
-}
-
-export default function NavBar({ openForm }: Props) {
+export default function NavBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundImage: 'linear-gradient(135deg, #182a73 0%, #218aae 69%, #20a7ac 89%)' }}>
                 <Container maxWidth="xl">
                     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Box>
-                            <MenuItem sx={{ display: 'flex', gap: 2 }}>
+                            <MenuItem sx={{ display: 'flex', gap: 2 }} component={NavLink} to="/">
                                 <Group fontSize="large" />
                                 <Typography variant="h4" fontWeight='bold'>
                                     Reactivities
@@ -20,17 +18,14 @@ export default function NavBar({ openForm }: Props) {
                             </MenuItem>
                         </Box>
                         <Box sx={{ display: 'flex' }}>
-                            <MenuItem sx={{ fontSize: '1.2rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
+                            <MenuItemLink to="/activities" >
                                 Activities
-                            </MenuItem>
-                            <MenuItem sx={{ fontSize: '1.2rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
-                                About
-                            </MenuItem>
-                            <MenuItem sx={{ fontSize: '1.2rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
-                                Contact
-                            </MenuItem>
+                            </MenuItemLink>
+                            <MenuItemLink to="/createActivity" >
+                                Create Activity
+                            </MenuItemLink>
                         </Box>
-                        <Button variant="contained" color='warning' size="large" onClick={() => openForm()}>Create activity</Button>
+                        <MenuItem>User menu</MenuItem>
                     </Toolbar>
                 </Container>
 
